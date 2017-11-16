@@ -18,18 +18,18 @@
       validate_certs: no
       hostname: "{{ vcenter }}"
       datacenter: "{{ datacenter }}"
-      guest: "{{ vm_name }}"
+      name: "{{ vm_name }}"
       template: "{{ template }}"
       state: poweredon
-      vm_extra_config:
+      extra_config:
         vcpu.hotadd: yes
         mem.hotadd:  yes
         notes: "{{ notes }} - {{ creationdate }}"
-      vm_disk:
+      disk:
         size_gb: 50
         type: thin
         datastore: "{{ datastore }}"
-      vm_hardware:
+      hardware:
         memory_mb: "{{ vm_memory_mb }}"
         num_cpus: "{{ vm_cpu }}"
         scsi: paravirtual
