@@ -34,38 +34,38 @@
   - set_fact: creationdate="{{lookup('pipe','date "+%Y/%m/%d %H:%M"')}}"
 
   # Create VM from a template
-  -name: create VM
-     vmware_guest:
-         validate_certs: no
-         hostname: "{{ vc_hostname }}"
-         username: "{{ vc_user }}"
-         password: "{{ vc_pass }}"
-         datacenter: "{{ datacenter }}"
-         name: "{{vm_name}}"
-         state: poweredon
-         annotation: "{{ notes }}"
-         vm_extra_config:
-           vcpu.hotadd: yes
-           mem.hotadd:  yes
-         vm_disk:
-           size_gb: 10
-           type: thin
-           datastore: "{{datastore}"
-           vm_hardware:
-           memory_mb: "{{vm_memory_mb}}"
-           num_cpus: "{{vm_cpu}}"
-         vm_nic:
-           nic1:
-           type: vmxnet3
-           network: "{{pg_name}}"
-           network_type: standard
-         networks:
-           name: "{{pg_name}}"
-           ip: "{{ip}}"
-           gateway: "{{vm_gateway}}"
-           netmask: "{{netmask}}"
-         template: "{{ vmtemplate }}"
-         wait_for_ip_address: yes
+  - name: create VM
+    vmware_guest:
+      validate_certs: no
+      hostname: "{{ vc_hostname }}"
+      username: "{{ vc_user }}"
+      password: "{{ vc_pass }}"
+      datacenter: "{{ datacenter }}"
+      name: "{{vm_name}}"
+      state: poweredon
+      annotation: "{{ notes }}"
+      vm_extra_config:
+      vcpu.hotadd: yes
+      mem.hotadd:  yes
+      vm_disk:
+        size_gb: 10
+        type: thin
+        datastore: "{{datastore}"
+      vm_hardware:
+        memory_mb: "{{vm_memory_mb}}"
+        num_cpus: "{{vm_cpu}}"
+      vm_nic:
+        nic1:
+        type: vmxnet3
+        network: "{{pg_name}}"
+        network_type: standard
+      networks:
+        name: "{{pg_name}}"
+        ip: "{{ip}}"
+        gateway: "{{vm_gateway}}"
+        netmask: "{{netmask}}"
+        template: "{{ vmtemplate }}"
+        wait_for_ip_address: yes
 # Add new VM to list of host in Ansible
   - name: add to ansible hosts file
     lineinfile:
