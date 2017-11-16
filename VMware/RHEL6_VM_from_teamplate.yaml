@@ -3,27 +3,6 @@
 - hosts: all
   gather_facts: false
   connection: local
-  vars_prompt:
-   - name: "vc_user"
-     prompt: "Enter username"
-     private: no
-   - name: "vc_pass"
-     promt: "Enter password"
-     private: yes
-   - name: "vm_name"
-     promt: "Enter VM name"
-   - name: "vm_ip"
-     promt: "Enter VM IP address"
-   - name: "vm_netmask'"
-     promt: "Enter VM submet mask"
-   - name: "vm_gateway"
-     promt: "Enter VM default gateway"
-   - name: "pg_name"
-     promt: "Enter PortGroup/VLAN  name"
-   - name: "vm_cpu"
-     promt: "Enter number of virtual CPUs"
-   - name: "vm_memory_mb"
-     promt: "Enter memory in MegaByte"
 
 #variables should be defined in the template
   vars:
@@ -37,16 +16,15 @@
   - name: create VM
     vmware_guest:
       validate_certs: no
-      hostname: "{{ vc_hostname }}"
-      username: "{{ vc_user }}"
-      password: "{{ vc_pass }}"
-      datacenter: "{{datacenter}}"
-      name: "{{vm_name}}"
+      hostname: "{{ vcenter }}"
+      datacenter: "{{ datacenter }}"
+      guest: "{{ vm_name }}"
+      template: "{{template}}"
       state: poweredon
-      annotation: "{{ notes }}"
       vm_extra_config:
-      vcpu.hotadd: yes
-      mem.hotadd:  yes
+        vcpu.hotadd: yes
+        mem.hotadd:  yes
+        notes: "{{ notes }} - {{ creationdate }}"
       vm_disk:
         size_gb: 50
         type: thin
@@ -54,17 +32,18 @@
       vm_hardware:
         memory_mb: "{{vm_memory_mb}}"
         num_cpus: "{{vm_cpu}}"
+        scsi: paravirtual
+        osid: RHEL64Guest
       vm_nic:
         nic1:
-        type: vmxnet3
-        network: "{{pg_name}}"
-        network_type: standard
+          type: vmxnet3
+          network: "{{port_group}}"
+          network_type: standard
       networks:
-        name: "{{pg_name}}"
-        ip: "{{ip}}"
+        vm_ip: "{{vm_ip}}"
         gateway: "{{vm_gateway}}"
-        netmask: "{{netmask}}"
-        template: "{{vmtemplate}}"
+        netmask: "{{vm_netmask}}"
+
         wait_for_ip_address: yes
 # Add new VM to list of host in Ansible
   - name: add to ansible hosts file
