@@ -40,7 +40,7 @@
       hostname: "{{ vc_hostname }}"
       username: "{{ vc_user }}"
       password: "{{ vc_pass }}"
-      datacenter: "{{ datacenter }}"
+      datacenter: "{{datacenter}}"
       name: "{{vm_name}}"
       state: poweredon
       annotation: "{{ notes }}"
@@ -48,9 +48,9 @@
       vcpu.hotadd: yes
       mem.hotadd:  yes
       vm_disk:
-        size_gb: 10
+        size_gb: 50
         type: thin
-        datastore: "{{datastore}"
+        datastore: "{{datastore}}"
       vm_hardware:
         memory_mb: "{{vm_memory_mb}}"
         num_cpus: "{{vm_cpu}}"
@@ -64,7 +64,7 @@
         ip: "{{ip}}"
         gateway: "{{vm_gateway}}"
         netmask: "{{netmask}}"
-        template: "{{ vmtemplate }}"
+        template: "{{vmtemplate}}"
         wait_for_ip_address: yes
 # Add new VM to list of host in Ansible
   - name: add to ansible hosts file
