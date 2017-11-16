@@ -19,7 +19,7 @@
       hostname: "{{ vcenter }}"
       datacenter: "{{ datacenter }}"
       guest: "{{ vm_name }}"
-      template: "{{template}}"
+      template: "{{ template }}"
       state: poweredon
       vm_extra_config:
         vcpu.hotadd: yes
@@ -28,10 +28,10 @@
       vm_disk:
         size_gb: 50
         type: thin
-        datastore: "{{datastore}}"
+        datastore: "{{ datastore }}"
       vm_hardware:
-        memory_mb: "{{vm_memory_mb}}"
-        num_cpus: "{{vm_cpu}}"
+        memory_mb: "{{ vm_memory_mb }}"
+        num_cpus: "{{ vm_cpu }}"
         scsi: paravirtual
         osid: RHEL64Guest
       vm_nic:
@@ -39,10 +39,10 @@
           type: vmxnet3
           network: "{{port_group}}"
           network_type: standard
-      networks:
-        vm_ip: "{{vm_ip}}"
-        gateway: "{{vm_gateway}}"
-        netmask: "{{vm_netmask}}"
+#      networks:
+#        vm_ip: "{{vm_ip}}"
+#        gateway: "{{vm_gateway}}"
+#        netmask: "{{vm_netmask}}"
 
         wait_for_ip_address: yes
 # Add new VM to list of host in Ansible
