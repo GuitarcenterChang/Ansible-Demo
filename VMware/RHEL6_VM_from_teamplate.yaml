@@ -21,10 +21,6 @@
       name: "{{ vm_name }}"
       template: "{{ template }}"
       state: poweredon
-      extra_config:
-        vcpu.hotadd: yes
-        mem.hotadd:  yes
-        notes: "{{ notes }} - {{ creationdate }}"
       disk:
         size_gb: 50
         type: thin
@@ -42,6 +38,14 @@
         dns_servers:
           - 199.199.199.11
           - 199.199.199.12
+
+  - name: Modify VM to have hotadd and add notes
+    vsphere_guest:
+      guest: "{{vm_name}}"
+      extra_config:
+        vcpu.hotadd: yes
+        mem.hotadd:  yes
+        notes: "{{ notes }} - {{ creationdate }}"
 
 # Add new VM to list of host in Ansible
   - name: add to ansible hosts file
