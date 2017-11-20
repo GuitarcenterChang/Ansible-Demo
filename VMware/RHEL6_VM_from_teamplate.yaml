@@ -16,7 +16,6 @@
   - name: create VM from template
     vmware_guest:
       validate_certs: no
-      hostname: "{{ vcenter }}"
       datacenter: "{{ datacenter }}"
       name: "{{ vm_name }}"
       template: "{{ template }}"
