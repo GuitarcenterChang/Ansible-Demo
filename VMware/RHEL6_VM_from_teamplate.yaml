@@ -22,7 +22,7 @@
       state: poweredon
       disk:
         size_gb: "{{vd_size_gb}}"
-        type: "{{vd_type}}"
+#        type: "{{vd_type}}"
         datastore: "{{ datastore }}"
       hardware:
         memory_mb: "{{ vm_memory_mb }}"
