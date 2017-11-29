@@ -2,15 +2,15 @@
 
 # Set ESXi host DNS configuration
 
-gather_facts: false
+  gather_facts: false
 
-Tasks:
-  name: Configure ESXi hostname and DNS server
-  local_action:
-    module: vmware_dns_config
-    domainname: "{{domain_name}}"
-    dns_servers:
-      - "{{dns1}}"
-      - "{{dns2}}"
+  Tasks:
+  - name: Configure ESXi hostname and DNS server
+    local_action:
+      module: vmware_dns_config
+      domainname: "{{domain_name}}"
+      dns_servers:
+        - "{{dns1}}"
+        - "{{dns2}}"
 
 ...
