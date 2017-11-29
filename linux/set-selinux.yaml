@@ -1,0 +1,17 @@
+---
+
+# Put SELinux in permissive mode, logging actions that would be blocked.
+- hosts: all
+  gather_facts: false
+
+#variables should be defined in the template
+  var:
+
+  tasks:
+    name: Set selinux
+    - selinux:
+      policy: targeted
+      state: permissive
+
+
+...
