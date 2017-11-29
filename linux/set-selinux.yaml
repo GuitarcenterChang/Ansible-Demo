@@ -8,8 +8,8 @@
   var:
 
   tasks:
-    name: Set selinux
-    - selinux:
+  - name: Set selinux
+    selinux:
       policy: targeted
       state: permissive
 
