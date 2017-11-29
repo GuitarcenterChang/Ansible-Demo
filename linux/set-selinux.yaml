@@ -5,7 +5,7 @@
   gather_facts: false
 
 #variables should be defined in the template
-  var:
+#  var:
 
   tasks:
   - name: Set selinux
