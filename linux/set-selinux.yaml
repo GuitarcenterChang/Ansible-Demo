@@ -11,7 +11,7 @@
   - name: Set selinux
     selinux:
       policy: targeted
-      state: permissive
+      state: "{{selinux_state}}"
 
 
 ...
