@@ -1,7 +1,7 @@
 ---
 
 # Set ESXi host DNS configuration
-
+- hosts: all
   gather_facts: false
 
   Tasks:
