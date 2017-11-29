@@ -1,8 +1,8 @@
 ---
 
 # Set ESXi host DNS configuration
-- name: Configure ESXi hostname and DNS servers
-  local_action:
+  - name: Configure ESXi hostname and DNS servers
+    local_action:
     module: vmware_dns_config
     domainname: "{{domain_name}}"
     dns_servers:
