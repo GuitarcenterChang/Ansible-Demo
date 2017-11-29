@@ -2,11 +2,11 @@
 
 
 # Set Juniper switch login banner
-  - name: configure the login banner
-    junos_banner:
-      banner: login
-      text: "{{login_banner}}"
-      state: present
+  name: configure the login banner
+  junos_banner:
+    banner: login
+    text: "{{login_banner}}"
+    state: present
 
 
 ...
