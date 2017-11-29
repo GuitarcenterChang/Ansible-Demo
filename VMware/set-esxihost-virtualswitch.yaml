@@ -1,3 +1,7 @@
+---
+
+# Set ESXi hosts vSwitch configuration
+
 - name: Add a VMWare vSwitch with multiple NICs
   vmware_vswitch:
     switch: "{{virtual-switch-name}}"
@@ -6,3 +10,5 @@
     - "{{virtual-switch-vmnic1}}"
     mtu: 9000
   delegate_to: localhost
+
+...
