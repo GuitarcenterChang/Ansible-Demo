@@ -4,7 +4,10 @@
 - hosts: all
   gather_facts: false
 
-  Tasks:
+#variables should be defined in the template
+#  var:
+
+  tasks:
   - name: Configure ESXi hostname and DNS server
     local_action:
       module: vmware_dns_config

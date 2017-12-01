@@ -3,10 +3,12 @@
 # Set ESXi hosts vSwitch configuration
 - hosts: all
   gather_facts: false
+  connection: local
 
-  var:
+#variables should be defined in the template
+#  vars:
 
-  Tasks:
+  tasks:
   - name: Add a VMWare vSwitch with multiple NICs
     vmware_vswitch:
       switch: "{{virtual-switch-name}}"
